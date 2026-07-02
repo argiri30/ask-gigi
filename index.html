@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ask Gigi | Alzheimer's & Dementia Consultant | Gigi Bratakos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1C2B3A;
+      --sand:   #F5EFE4;
+      --cream:  #FDFAF5;
+      --sage:   #6B8F71;
+      --sage-light: #EAF1EB;
+      --text:   #2D2D2D;
+      --muted:  #6B7280;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(253,250,245,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(28,43,58,0.08);
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* ASK GIGI BRAND MARK */
+    .ask-gigi-brand {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 14vw, 9rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #C8D9CA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border: 3px solid rgba(107,143,113,0.5);
+      border-radius: 24px;
+      padding: 24px 48px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(107,143,113,0.15), inset 0 0 60px rgba(107,143,113,0.05);
+    }
+    .ask-gigi-brand:hover {
+      border-color: rgba(107,143,113,0.9);
+      box-shadow: 0 0 60px rgba(107,143,113,0.35), inset 0 0 60px rgba(107,143,113,0.1);
+      transform: translateY(-3px);
+    }
+    .ask-gigi-brand::after {
+      content: 'Tap to book a session';
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      -webkit-text-fill-color: rgba(107,143,113,0.9);
+      color: rgba(107,143,113,0.9);
+      margin-top: 8px;
+    }
+    .nav-cta {
+      background: var(--sage);
+      color: var(--white);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #557a5b; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(107,143,113,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #C8D9CA;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.75;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+    .btn-primary {
+      background: var(--sage);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #557a5b; transform: translateY(-1px); }
+    .btn-ghost {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+
+    .hero-stat-row {
+      margin-top: 72px;
+      display: flex; gap: 48px; flex-wrap: wrap;
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* PERSONAL STORY */
+    .story {
+      background: var(--sand);
+      padding: 100px 48px;
+    }
+    .story-inner {
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    .story-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+    .story-left p {
+      color: #4A4A4A;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .story-right {
+      padding-top: 8px;
+    }
+    .credential-card {
+      background: var(--white);
+      border-left: 3px solid var(--sage);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      border-radius: 0 8px 8px 0;
+    }
+    .credential-card strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .credential-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* RECOGNITION STRIP */
+    .recognition-strip {
+      background: var(--navy);
+      padding: 20px 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .recognition-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .recognition-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      white-space: nowrap;
+    }
+    .recognition-items {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .recognition-item {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .recognition-divider {
+      color: rgba(255,255,255,0.2);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .recognition-strip { padding: 16px 24px; }
+      .recognition-label { width: 100%; }
+    }
+
+    /* WHAT YOU GET */
+    .offer {
+      background: var(--cream);
+      padding: 100px 48px;
+      text-align: center;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+    .offer h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .offer .intro {
+      max-width: 560px; margin: 0 auto 64px;
+      color: var(--muted); font-size: 1rem; line-height: 1.75;
+    }
+    .topics-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .topic-card {
+      background: var(--white);
+      border: 1px solid rgba(28,43,58,0.07);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: left;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .topic-card:hover { box-shadow: 0 8px 32px rgba(28,43,58,0.08); transform: translateY(-2px); }
+    .topic-icon {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+    .topic-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .topic-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* QUOTE */
+    .quote-section {
+      background: var(--navy);
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-style: italic;
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.5;
+    }
+    .quote-section cite {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-style: normal;
+    }
+
+    /* BOOKING */
+    .booking {
+      background: var(--sage-light);
+      padding: 100px 48px;
+    }
+    .booking-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+    }
+    .booking h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .booking .intro {
+      color: #4A4A4A;
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .rate-badge {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      padding: 12px 36px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .rate-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .booking-form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: left;
+      box-shadow: 0 4px 24px rgba(28,43,58,0.07);
+    }
+    .form-row { margin-bottom: 20px; }
+    .form-row label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      border: 1px solid rgba(28,43,58,0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus {
+      border-color: var(--sage);
+    }
+    .form-row textarea { resize: vertical; min-height: 100px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .submit-btn {
+      width: 100%;
+      background: var(--sage);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #557a5b; }
+
+    .disclaimer-box {
+      background: #FDF8F0;
+      border: 1px solid rgba(28,43,58,0.12);
+      border-left: 4px solid var(--sage);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0 8px;
+    }
+    .disclaimer-box h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .disclaimer-box p {
+      font-size: 0.8rem;
+      color: #4A4A4A;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .checkbox-label {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 16px;
+      cursor: pointer;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 2px;
+      accent-color: var(--sage);
+      cursor: pointer;
+    }
+    .checkbox-label span {
+      font-size: 0.8rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 40px 48px;
+      font-size: 0.8rem;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-stat-row { gap: 32px; }
+      .story { padding: 64px 24px; }
+      .story-inner { grid-template-columns: 1fr; gap: 40px; }
+      .offer { padding: 64px 24px; }
+      .topics-grid { grid-template-columns: 1fr 1fr; }
+      .quote-section { padding: 60px 24px; }
+      .booking { padding: 64px 24px; }
+      .booking-form { padding: 28px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px; }
+    }
+    @media (max-width: 480px) {
+      .topics-grid { grid-template-columns: 1fr; }
+    }
+    /* RESOURCES SECTION */
+    .resources-section {
+      background: var(--cream);
+      padding: 100px 48px;
+    }
+    .resources-inner {
+      max-width: 860px; margin: 0 auto;
+    }
+    .resources-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .resources-inner h2 em { font-style: italic; color: var(--sage); }
+    .resources-intro {
+      font-size: 1rem;
+      color: #4A4A4A;
+      line-height: 1.8;
+      margin-bottom: 56px;
+    }
+    .resource-block {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      border: 1px solid rgba(28,43,58,0.06);
+    }
+    .resource-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      background: var(--navy);
+    }
+    .resource-icon { font-size: 1.4rem; }
+    .resource-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .resource-body {
+      padding: 28px;
+    }
+    .resource-body p {
+      font-size: 0.9rem;
+      color: #3A3A3A;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .resource-body p strong { color: var(--navy); }
+    .resource-body p em { font-style: italic; }
+    .resource-callout {
+      background: var(--sage-light);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 0.85rem;
+      color: #3A3A3A;
+      line-height: 1.7;
+      margin-top: 4px;
+    }
+    .resource-callout strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .resource-callout ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+    .resource-callout ul li { margin-bottom: 6px; }
+    .resources-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+    .resources-cta p {
+      font-size: 1rem;
+      color: #4A4A4A;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .resources-section { padding: 64px 24px; }
+      .resource-header { padding: 20px; }
+      .resource-body { padding: 20px; }
+    }
+
+    /* STAYING HOME SECTION */
+    .stayhome-section {
+      background: var(--navy);
+      padding: 100px 48px;
+    }
+    .stayhome-inner {
+      max-width: 960px; margin: 0 auto;
+    }
+    .stayhome-inner .section-label { color: #9dbfa2; }
+    .stayhome-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .stayhome-inner h2 em { font-style: italic; color: #9dbfa2; }
+    .stayhome-intro {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      max-width: 720px;
+      margin-bottom: 56px;
+    }
+    .stayhome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .stayhome-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .stayhome-card--affirm {
+      background: rgba(107,143,113,0.15);
+      border-color: rgba(107,143,113,0.3);
+    }
+    .stayhome-icon {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+    .stayhome-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .stayhome-card p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+    }
+    .stayhome-card ul {
+      margin: 10px 0 0 18px;
+    }
+    .stayhome-card ul li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+    .stayhome-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 48px;
+    }
+    .stayhome-bottom p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+    .stayhome-bottom p em { font-style: italic; color: #9dbfa2; }
+    @media (max-width: 768px) {
+      .stayhome-section { padding: 64px 24px; }
+      .stayhome-grid { grid-template-columns: 1fr; }
+    }
+
+    /* VA BENEFITS SECTION */
+    .va-section {
+      background: #0D1B2A;
+      padding: 100px 48px;
+    }
+    .va-inner { max-width: 960px; margin: 0 auto; }
+    .va-header-block {
+      margin-bottom: 56px;
+    }
+    .va-flag { font-size: 2.5rem; margin-bottom: 16px; }
+    .va-header-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .va-header-block h2 em { font-style: italic; color: #C8A96E; }
+    .va-intro {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+    .va-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .va-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .va-card--gold {
+      border-color: rgba(200,169,110,0.4);
+      background: rgba(200,169,110,0.07);
+      grid-column: 1 / -1;
+    }
+    .va-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .va-card p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .va-card p strong { color: var(--white); }
+    .va-card p em { font-style: italic; }
+    .va-card ul {
+      padding-left: 18px;
+      margin-bottom: 12px;
+    }
+    .va-card ul li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+    .va-card ul li strong { color: rgba(255,255,255,0.85); }
+    .va-amounts {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .va-amount {
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.3);
+      border-radius: 8px;
+      padding: 14px 20px;
+      flex: 1;
+      min-width: 160px;
+    }
+    .va-amount strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #C8A96E;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .va-amount span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .va-callout {
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid #C8A96E;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+    .va-callout strong {
+      display: block;
+      color: #C8A96E;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .va-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .va-bottom-text { flex: 1; min-width: 280px; }
+    .va-bottom-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .va-bottom-text p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+    }
+    .btn-gold {
+      display: inline-block;
+      background: #C8A96E;
+      color: #0D1B2A;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-gold:hover { background: #b8945a; }
+    @media (max-width: 768px) {
+      .va-section { padding: 64px 24px; }
+      .va-grid { grid-template-columns: 1fr; }
+      .va-card--gold { grid-column: 1; }
+      .va-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+
+    /* TRANSITION GUIDANCE */
+    .transition-section {
+      background: var(--sand);
+      padding: 100px 48px;
+    }
+    .transition-inner {
+      max-width: 960px; margin: 0 auto;
+    }
+    .transition-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .transition-inner h2 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+    .transition-intro {
+      font-size: 1rem;
+      color: #4A4A4A;
+      line-height: 1.8;
+      max-width: 700px;
+      margin-bottom: 56px;
+    }
+    .guidance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .guidance-block {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .guidance-block--cta {
+      background: var(--navy);
+    }
+    .guidance-block--cta h3 { color: var(--white); }
+    .guidance-block--cta p { color: rgba(255,255,255,0.65); }
+    .guidance-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--sage);
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+    .guidance-block--cta .guidance-number {
+      color: rgba(107,143,113,0.7);
+    }
+    .guidance-block h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .guidance-block p {
+      font-size: 0.875rem;
+      color: #4A4A4A;
+      line-height: 1.75;
+    }
+    .guidance-block p strong { color: var(--navy); }
+    .guidance-block p em { font-style: italic; }
+    .btn-sage {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--sage);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-sage:hover { background: #557a5b; }
+    @media (max-width: 768px) {
+      .transition-section { padding: 64px 24px; }
+      .guidance-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="about.html" style="font-size:0.85rem;color:#2D2D2D;font-weight:500;text-decoration:none;">About Gigi</a>
+  <a href="#booking" class="nav-cta">Book a Session — $60/hr</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <a href="#booking" class="ask-gigi-brand">Ask Gigi</a>
+    <div class="hero-eyebrow">Alzheimer's &amp; Dementia Consultant &nbsp;·&nbsp; Gigi Bratakos, RBT</div>
+    <h1>You don't have to<br/>figure this out <em>alone.</em></h1>
+    <p class="hero-sub">
+      Ask me anything — care decisions, stage progression, family dynamics, facility choices, behavior changes. Real answers from 20 years in the field, not a Google search.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Pick My Brain — $60/hr</a>
+      <a href="#story" class="btn-ghost">My background →</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <strong>20</strong>
+        <span>Years in the field</span>
+      </div>
+      <div class="hero-stat">
+        <strong>RCFE</strong>
+        <span>Licensed facility owner</span>
+      </div>
+      <div class="hero-stat">
+        <strong>10 yrs</strong>
+        <span>Personal caregiver</span>
+      </div>
+      <div class="hero-stat">
+        <strong>RBT</strong>
+        <span>Registered behavior tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-left">
+      <h2>Gigi has been on every side of this journey.</h2>
+      <p>
+        I've owned and operated Residential Care Facilities for the Elderly (RCFEs) specializing in Alzheimer's and dementia care for two decades. I know what good care looks like — and I know what to watch out for.
+      </p>
+      <p>
+        But more than that: I cared for my own grandmother with dementia in my home for 10 years. I know the sleepless nights, the hard conversations, the guilt, and the love that drives families to keep going.
+      </p>
+      <p>
+        With a Bachelor's in Psychology from UC San Diego and credentials as a Registered Behavior Technician, I bring both academic grounding and clinical skill to every conversation — on top of 20 years in the field.
+      </p>
+      <p>
+        Beyond the care world, I served as a Health Tech Advisor affiliated with Caltech, ArtCenter, and JPL — supporting innovation, consulting with directors and investment funds, and developing new startup ideas at the intersection of technology and eldercare. I've consulted for Fortune 500 companies, participated in CES for five consecutive years, supported a startup group for 10 years that won significant awards, and was featured in the <em>LA Business Journal</em>. I've spoken at USC alongside leaders from Google, and mentored students at ArtCenter College of Design.
+      </p>
+      <p>
+        All of that experience — in boardrooms, care facilities, laboratories, and my own home — is what I bring to every conversation with families like yours.
+      </p>
+    </div>
+    <div class="story-right">
+      <div class="credential-card">
+        <strong>20 Years as Alzheimer's &amp; Dementia Specialist</strong>
+        <p>Owned and operated RCFEs specializing in memory care, working closely with residents and families throughout.</p>
+      </div>
+      <div class="credential-card">
+        <strong>Personal Family Caregiver — 10 Years</strong>
+        <p>Cared for my grandmother with dementia in my own home. I've lived what your family is going through.</p>
+      </div>
+      <div class="credential-card">
+        <strong>B.A. Psychology — UC San Diego</strong>
+        <p>Academic foundation in human behavior, directly applied to understanding dementia, cognition, and family dynamics.</p>
+      </div>
+      <div class="credential-card">
+        <strong>Registered Behavior Technician (RBT)</strong>
+        <p>Credentialed in behavioral therapy — bringing clinical insight to real-world dementia care challenges.</p>
+      </div>
+      <div class="credential-card">
+        <strong>Health Tech Advisor — Caltech, ArtCenter &amp; JPL</strong>
+        <p>Supported innovation in eldercare technology, consulting with directors and investment funds, and developing startup ideas alongside scientists and designers.</p>
+      </div>
+      <div class="credential-card">
+        <strong>Award-Winning Startup Advisor &amp; Speaker</strong>
+        <p>Supported an LA-based startup group for 10 years that won significant awards. Featured in the <em>LA Business Journal</em>. Speaker at USC alongside leaders from Google. Mentor to ArtCenter students.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION STRIP -->
+<div class="recognition-strip">
+  <div class="recognition-inner">
+    <span class="recognition-label">Recognized &amp; Featured By</span>
+    <div class="recognition-items">
+      <div class="recognition-item">💡 Health Tech Advisor</div>
+      <div class="recognition-divider">·</div>
+      <div class="recognition-item">📰 LA Business Journal</div>
+      <div class="recognition-divider">·</div>
+      <div class="recognition-item">🎓 USC Speaker</div>
+      <div class="recognition-divider">·</div>
+      <div class="recognition-item">🔍 Google Collaboration</div>
+      <div class="recognition-divider">·</div>
+      <div class="recognition-item">🖥️ CES — 5 Years</div>
+      <div class="recognition-divider">·</div>
+      <div class="recognition-item">🏆 Award-Winning Startup Advisor</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU CAN ASK -->
+<section class="offer" id="topics">
+  <div class="section-label">What We Can Cover</div>
+  <h2>There's no question too small — or too hard.</h2>
+  <p class="intro">Families and caregivers often don't know what they don't know. Bring me whatever's on your mind.</p>
+  <div class="topics-grid">
+    <div class="topic-card">
+      <div class="topic-icon">🧠</div>
+      <h3>Understanding the Diagnosis</h3>
+      <p>What the stages mean, what to expect, and how to interpret what doctors are telling you.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">🏠</div>
+      <h3>Home vs. Facility Care</h3>
+      <p>When it's still manageable at home, what to look for in a facility, and how to make that call without guilt.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">💬</div>
+      <h3>Behavior &amp; Communication</h3>
+      <p>How to handle sundowning, aggression, wandering, confusion, and the moments that break your heart.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">👨‍👩‍👧</div>
+      <h3>Family Dynamics</h3>
+      <p>Navigating disagreements between siblings, how to involve the person with dementia, and setting boundaries.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">📋</div>
+      <h3>Choosing &amp; Evaluating Facilities</h3>
+      <p>What questions to ask, red flags to spot, and what good dementia care actually looks like from the inside.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">💡</div>
+      <h3>Caregiver Burnout &amp; Sustainability</h3>
+      <p>You can't pour from an empty cup. Let's talk about what you need to keep going — practically and emotionally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <blockquote>"The best thing you can do for someone with Alzheimer's is understand what's happening — and then act with patience, not fear."</blockquote>
+  <cite>— Gigi Bratakos, 20 years of experience, one conversation at a time</cite>
+</section>
+
+<!-- TRANSITION GUIDANCE -->
+<section class="transition-section" id="guidance">
+  <div class="transition-inner">
+    <div class="section-label">From Gigi's Experience</div>
+    <h2>The hardest conversation families face —<br/><em>and how to have it with love.</em></h2>
+    <p class="transition-intro">When it's time to move your loved one from home to a care facility, most families freeze. They don't know what to say, when to push, or how to honor the person in front of them while still making the right call. Here's what 20 years taught me.</p>
+
+    <div class="guidance-grid">
+
+      <div class="guidance-block">
+        <div class="guidance-number">01</div>
+        <h3>Know when it's time — and trust yourself.</h3>
+        <p>If you're asking the question, you're probably already there. The signs are real: safety risks at home, caregiver exhaustion, rapid decline in function, wandering, falls, or the person with dementia becoming a danger to themselves. You are not abandoning them. You are choosing a higher level of care than you can provide alone — and that is an act of love.</p>
+      </div>
+
+      <div class="guidance-block">
+        <div class="guidance-number">02</div>
+        <h3>What to say — and what not to.</h3>
+        <p>Never lead with "you have to." Instead, lead with <em>them</em>. Try: <strong>"I want to make sure you're safe and that you have people around you who can take care of you the way you deserve."</strong> Avoid arguing about their memory or convincing them of their diagnosis — that battle cannot be won and it robs them of dignity. Speak to their feelings, not the facts.</p>
+      </div>
+
+      <div class="guidance-block">
+        <div class="guidance-number">03</div>
+        <h3>Be assertive without being authoritative.</h3>
+        <p>There's a difference between taking over and taking the wheel. You can be firm and loving at the same time. If they resist, don't back down — but don't escalate either. Say: <strong>"I hear you, and I understand you don't want this. And I also need you to be safe. We're going to do this together."</strong> Calm, steady, and clear. You are the anchor.</p>
+      </div>
+
+      <div class="guidance-block">
+        <div class="guidance-number">04</div>
+        <h3>Preserve their dignity through the transition.</h3>
+        <p>Let them make choices wherever possible — which chair comes with them, what photos go on the wall, what they want for their first dinner. Involve them in the tour if they're able. Frame the move around community and care, not loss. Their identity is still intact even when their memory isn't — treat them like the adult they have always been.</p>
+      </div>
+
+      <div class="guidance-block">
+        <div class="guidance-number">05</div>
+        <h3>The first 30 days are the hardest — for everyone.</h3>
+        <p>Guilt, grief, and second-guessing are normal. So is resistance from your loved one. Stay consistent with visits, but don't hover — allow the staff to build their own relationship and routine. Most families report that within 30 days, their loved one has adjusted far better than expected. Give it time before you judge the decision.</p>
+      </div>
+
+      <div class="guidance-block guidance-block--cta">
+        <div class="guidance-number">?</div>
+        <h3>Every family's situation is different.</h3>
+        <p>These are the principles — but your situation has its own history, dynamics, and emotional weight. This is exactly what I help families navigate, one conversation at a time.</p>
+        <a href="#booking" class="btn-sage">Talk to Gigi →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES SECTION -->
+<section class="resources-section" id="resources">
+  <div class="resources-inner">
+    <div class="section-label">What Nobody Tells You</div>
+    <h2>The services, benefits, and decisions<br/><em>most families find out about too late.</em></h2>
+    <p class="resources-intro">The system is complicated on purpose — or at least it feels that way. Here's what Gigi wishes every family knew from the start.</p>
+
+    <div class="resource-block">
+      <div class="resource-header">
+        <span class="resource-icon">🕊️</span>
+        <h3>Hospice — It's Not What Most People Think</h3>
+      </div>
+      <div class="resource-body">
+        <p>Most families wait too long to call hospice — or never call at all — because they think it means giving up. It doesn't. Hospice is a Medicare-covered benefit focused on <strong>comfort, dignity, and quality of life</strong> when curative treatment is no longer the goal. For dementia patients, that eligibility can come much earlier than families realize.</p>
+        <p>Hospice brings a team to <em>wherever your loved one lives</em> — home, RCFE, or nursing facility. That team includes nurses, aides, social workers, chaplains, and bereavement support for your family. It is one of the most underused, most powerful tools available — and it costs families nothing when Medicare or Medi-Cal is in place.</p>
+        <div class="resource-callout">
+          <strong>When to ask about hospice eligibility:</strong> If your loved one has stopped progressing, lost significant weight, stopped walking, or is having repeated infections or hospitalizations — it's time to have that conversation with their doctor. You don't have to wait until the very end.
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-block">
+      <div class="resource-header">
+        <span class="resource-icon">🏡</span>
+        <h3>Home Health — A Bridge Most Families Miss</h3>
+      </div>
+      <div class="resource-body">
+        <p>Home Health is different from hospice — it's skilled medical care (nursing, physical therapy, occupational therapy, speech therapy) delivered at home when someone is <strong>homebound and recovering or managing a condition</strong>. Medicare covers it with a doctor's order, and many families don't know to ask.</p>
+        <p>For dementia patients still living at home, Home Health aides can provide personal care assistance — bathing, dressing, medication management — and buy families more time before a facility transition becomes necessary. It can also help <strong>after a hospitalization</strong>, which is one of the most vulnerable and confusing times for dementia patients.</p>
+        <div class="resource-callout">
+          <strong>Ask the doctor directly:</strong> "Does my family member qualify for Home Health services?" Many physicians won't bring it up unless asked. You have every right to request it.
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-block">
+      <div class="resource-header">
+        <span class="resource-icon">📑</span>
+        <h3>What Medicare & Medi-Cal Cover — and What They Don't</h3>
+      </div>
+      <div class="resource-body">
+        <p>This is where families get blindsided. <strong>Medicare does not cover long-term residential care in an RCFE or assisted living facility.</strong> That cost — which can run $3,000–$7,000+ per month — typically comes out of pocket or through long-term care insurance.</p>
+        <p>What Medicare <em>does</em> cover: hospital stays, doctor visits, skilled nursing facility care (short-term, after a qualifying hospital stay), home health, and hospice. Medi-Cal (Medicaid in California) can cover long-term nursing home care for those who qualify financially, but the asset and income rules are strict and the application process is complex.</p>
+        <div class="resource-callout">
+          <strong>Key things to know:</strong>
+          <ul>
+            <li>Medicare covers up to 100 days in a skilled nursing facility after a 3-day hospital stay — but coverage decreases significantly after day 20</li>
+            <li>Medi-Cal planning should start <em>before</em> a crisis — there are look-back periods for asset transfers</li>
+            <li>A Geriatric Care Manager or Elder Law attorney can help you navigate this — and Gigi can help you know the right questions to ask them</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-block">
+      <div class="resource-header">
+        <span class="resource-icon">🏥</span>
+        <h3>Assisted Living vs. Skilled Nursing — Do You Ever Have To Move?</h3>
+      </div>
+      <div class="resource-body">
+        <p>This is one of the questions Gigi gets most often. The honest answer: <strong>not always — but sometimes yes.</strong> A good RCFE that specializes in memory care can often support a resident through end of life, especially with hospice layered in. The key is whether the facility can manage the person's <em>medical complexity</em> as the disease progresses.</p>
+        <p>A skilled nursing facility (SNF) becomes necessary when someone needs <strong>24-hour licensed nursing care</strong> — things like IV medications, wound care, ventilators, feeding tubes, or behaviors that require a higher level of medical intervention than an RCFE is licensed to provide. Dementia alone is rarely the reason for the move. It's usually a medical complication on top of dementia.</p>
+        <div class="resource-callout">
+          <strong>Before assuming a move is required:</strong> Get a second opinion. Some facilities will push a transfer prematurely. Ask specifically: "What would need to change for my loved one to be able to stay here?" A good facility will answer that honestly.
+        </div>
+      </div>
+    </div>
+
+    <div class="resources-cta">
+      <p>These are the conversations Gigi has with families every day. If any of this applies to your situation — or you're not sure where you stand — book a session.</p>
+      <a href="#booking" class="btn-primary">Book a Session with Gigi — $60/hr</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- STAYING HOME SECTION -->
+<section class="stayhome-section" id="staying-home">
+  <div class="stayhome-inner">
+    <div class="section-label">Staying Home Is a Valid Choice</div>
+    <h2>Nobody has to go to a facility.<br/><em>But here's what staying home really takes.</em></h2>
+    <p class="stayhome-intro">One of the most important things Gigi will tell you: a facility is not the only answer — and it's not always the right one. Many families successfully care for a loved one with dementia at home for years. But it requires honest planning, real support, and knowing what you're signing up for before the hard moments arrive.</p>
+
+    <div class="stayhome-grid">
+
+      <div class="stayhome-card stayhome-card--affirm">
+        <div class="stayhome-icon">🏠</div>
+        <h3>It's OK to stay home — really.</h3>
+        <p>Choosing to keep your loved one at home is not denial. It's not naive. For many families, it's the right call — and it can work beautifully with the right structure in place. Familiar surroundings, family presence, and personal routines can actually slow cognitive decline and reduce anxiety for dementia patients. Don't let anyone make you feel like home care is the lesser option.</p>
+      </div>
+
+      <div class="stayhome-card">
+        <div class="stayhome-icon">👁️</div>
+        <h3>Safety first — do a real home assessment.</h3>
+        <p>The home you've lived in for decades may need to change. Walk through every room with fresh eyes and ask: where could they fall? What could they accidentally turn on, swallow, or wander out of? Key areas to address:</p>
+        <ul>
+          <li>Remove throw rugs and improve lighting throughout</li>
+          <li>Lock up medications, cleaning products, and sharp objects</li>
+          <li>Install door alarms or locks to prevent wandering</li>
+          <li>Add grab bars in bathrooms, stairway handrails, and non-slip mats</li>
+          <li>Consider a medical alert device or GPS tracker for safety</li>
+          <li>Secure the stove — stoves are one of the most common hazards</li>
+        </ul>
+      </div>
+
+      <div class="stayhome-card">
+        <div class="stayhome-icon">🗓️</div>
+        <h3>Routine is everything — build one and protect it.</h3>
+        <p>People with dementia thrive on predictability. A consistent daily schedule — same wake time, meals, activities, and bedtime — reduces confusion, agitation, and sundowning. When routines break (holidays, travel, visitors), behavioral symptoms often spike. Build a simple written schedule and share it with everyone involved in care. The routine isn't just for them — it's for you too.</p>
+      </div>
+
+      <div class="stayhome-card">
+        <div class="stayhome-icon">🤝</div>
+        <h3>You cannot do this alone — and you shouldn't try.</h3>
+        <p>This is the part most families learn too late. One person cannot be a 24/7 caregiver without serious consequences to their own health, relationships, and mental wellbeing. Build a care team — even a small one. Rotate responsibilities among family members, hire part-time in-home help, use Adult Day Programs to give yourself a break, and explore respite care options. Accepting help is not weakness. It's sustainability.</p>
+      </div>
+
+      <div class="stayhome-card">
+        <div class="stayhome-icon">📉</div>
+        <h3>Know the signs that home care is no longer safe.</h3>
+        <p>Staying home is the right choice — until it isn't. Watch for these signals that the situation has changed:</p>
+        <ul>
+          <li>Frequent falls or unexplained injuries</li>
+          <li>Wandering outside, especially at night</li>
+          <li>Caregiver health declining — physically or emotionally</li>
+          <li>Aggression or behaviors that put others at risk</li>
+          <li>Inability to manage medications, eating, or basic hygiene safely</li>
+          <li>Isolation — both theirs and yours</li>
+        </ul>
+        <p style="margin-top:12px;">None of these mean you failed. They mean the level of care needed has grown beyond what one household can provide.</p>
+      </div>
+
+      <div class="stayhome-card">
+        <div class="stayhome-icon">💬</div>
+        <h3>Use the resources that exist — they're there for you.</h3>
+        <p>Most families don't know what's available to them. Adult Day Health Programs, Respite Care, In-Home Supportive Services (IHSS in California), Caregiver Support Groups, the Alzheimer's Association helpline, and your local Area Agency on Aging are all resources that can extend your ability to care at home significantly. Gigi can help you figure out which ones apply to your situation and how to access them.</p>
+      </div>
+
+    </div>
+
+    <div class="stayhome-bottom">
+      <p>Whether you stay home or eventually make a transition, the most important thing is that the decision is <em>informed, supported, and made with love</em> — not out of guilt, exhaustion, or fear. That's what Gigi is here to help with.</p>
+      <a href="#booking" class="btn-primary">Talk It Through with Gigi — $60/hr</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- VA BENEFITS SECTION -->
+<section class="va-section" id="veterans">
+  <div class="va-inner">
+
+    <div class="va-header-block">
+      <div class="va-flag">🇺🇸</div>
+      <div class="section-label" style="color:#C8A96E;">For Veterans &amp; Their Families</div>
+      <h2>They served our country.<br/><em>Now let's make sure they get every benefit they've earned.</em></h2>
+      <p class="va-intro">Veterans with Alzheimer's and dementia are among the most underserved populations when it comes to knowing what they're entitled to. Most families have no idea these benefits exist — or how to access them. Gigi does, and she's here to help you navigate every step.</p>
+    </div>
+
+    <div class="va-grid">
+
+      <div class="va-card va-card--gold">
+        <h3>💰 Aid &amp; Attendance — The Benefit Most Families Never Hear About</h3>
+        <p>Aid &amp; Attendance is an enhanced VA pension — <strong>tax-free, monthly cash</strong> — for wartime veterans and their surviving spouses who need help with daily activities due to physical or cognitive impairment. Dementia and Alzheimer's are among the most common qualifying conditions.</p>
+        <p>It covers care <em>wherever the veteran lives</em> — at home, in an RCFE, assisted living, or memory care. It does not need to be paid back.</p>
+        <div class="va-amounts">
+          <div class="va-amount">
+            <strong>Up to $2,431/mo</strong>
+            <span>Single veteran (2025)</span>
+          </div>
+          <div class="va-amount">
+            <strong>Up to $2,881/mo</strong>
+            <span>Veteran with spouse (2025)</span>
+          </div>
+          <div class="va-amount">
+            <strong>Up to $1,562/mo</strong>
+            <span>Surviving spouse (2025)</span>
+          </div>
+        </div>
+        <div class="va-callout">
+          <strong>Who qualifies?</strong> Wartime veterans (or their surviving spouses) who need help with at least 2 activities of daily living — bathing, dressing, eating, mobility, toileting — OR who require supervision due to cognitive impairment. Many mid-to-late stage dementia patients qualify even if they don't need direct physical help with every task.
+        </div>
+      </div>
+
+      <div class="va-card">
+        <h3>📋 What You Need to Apply</h3>
+        <p>The application process can feel overwhelming, but it's manageable with the right guidance. Here's what families need to gather:</p>
+        <ul>
+          <li><strong>DD-214</strong> — the veteran's discharge document (proof of wartime service)</li>
+          <li>Financial records — income, assets, and unreimbursed medical expenses</li>
+          <li>Medical documentation — a doctor's note confirming need for daily care assistance</li>
+          <li>VA Form 21-2680 — the Examination for Housebound Status or Permanent Need for Regular Aid &amp; Attendance</li>
+        </ul>
+        <div class="va-callout">
+          <strong>Start early — don't wait for a crisis.</strong> The application process takes time. A Veterans Service Officer (VSO) can help you apply for free. Gigi can help you understand what you're applying for and what to expect.
+        </div>
+      </div>
+
+      <div class="va-card">
+        <h3>🏥 VA Health Care Benefits for Veterans with Dementia</h3>
+        <p>Veterans enrolled in VA Health Care have access to a wide range of dementia-related services that most families don't know to ask about:</p>
+        <ul>
+          <li><strong>Diagnosis &amp; testing</strong> — cognitive screenings, neuropsychological testing, MRIs, lab work — all covered</li>
+          <li><strong>Medications</strong> — most dementia-related medications covered under VA health care</li>
+          <li><strong>Home Based Primary Care (HBPC)</strong> — comprehensive medical care brought directly to the home</li>
+          <li><strong>Homemaker &amp; Home Health Aide services</strong> — personal care assistance at home</li>
+          <li><strong>Adult Day Health Care</strong> — daytime programs providing supervision, activities, and medical care</li>
+          <li><strong>Caregiver Support Program</strong> — education, support groups, coaching, and respite for family caregivers</li>
+          <li><strong>Community Living Centers (CLCs)</strong> — VA nursing homes with dementia-specific care</li>
+          <li><strong>State Veterans Homes</strong> — skilled nursing care in a community setting</li>
+        </ul>
+      </div>
+
+      <div class="va-card">
+        <h3>⚠️ Common Mistakes Families Make with VA Benefits</h3>
+        <ul>
+          <li><strong>Waiting too long to apply.</strong> Aid &amp; Attendance is not retroactive — every month you delay is money left on the table.</li>
+          <li><strong>Assuming the VA will tell them.</strong> The system does not proactively reach out. You have to know to ask.</li>
+          <li><strong>Thinking it only applies in a nursing home.</strong> It covers home care, RCFE, assisted living, and memory care too.</li>
+          <li><strong>Not counting unreimbursed medical expenses.</strong> These can dramatically lower countable income and help families qualify who think they don't.</li>
+          <li><strong>Forgetting about surviving spouses.</strong> A widow or widower of a wartime veteran may qualify even if the veteran never applied.</li>
+          <li><strong>Going it alone.</strong> A Veterans Service Officer or accredited VA benefits counselor — like Gigi — can make the difference between approval and frustration.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="va-bottom">
+      <div class="va-bottom-text">
+        <h3>Every veteran deserves dignity — and the benefits they earned.</h3>
+        <p>If your loved one served, let's make sure they're getting everything they're entitled to. Gigi can help you understand the landscape, prepare your application, ask the right questions, and advocate for the care your veteran deserves.</p>
+      </div>
+      <a href="#booking" class="btn-gold">Talk to Gigi About VA Benefits — $60/hr</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div class="section-label">Book a Session</div>
+    <h2>Let's talk. Gigi is ready when you are.</h2>
+    <p class="intro">Sessions are 60 minutes, held by video or phone. You'll come away with clarity, a plan, and someone who truly gets it.</p>
+    <div class="rate-badge">$60 / hour</div>
+    <p class="rate-note">No upsells. No packages required. Just honest, experienced guidance.</p>
+
+    <div class="booking-form">
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Your Name</label>
+          <input type="text" placeholder="Jane Smith"/>
+        </div>
+        <div class="form-row">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@email.com"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Your Role</label>
+        <select>
+          <option value="">Select one…</option>
+          <option>Family member of someone with Alzheimer's</option>
+          <option>Veteran or veteran's family member</option>
+          <option>Professional caregiver</option>
+          <option>Healthcare worker</option>
+          <option>Facility staff or administrator</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>What's going on? (brief description)</label>
+        <textarea placeholder="Tell me a little about your situation — what's the biggest challenge you're facing right now?"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Preferred Contact Method</label>
+        <select>
+          <option>Video call (Zoom)</option>
+          <option>Phone call</option>
+          <option>Either works</option>
+        </select>
+      </div>
+
+      <div class="disclaimer-box">
+        <h4>📋 Please Read Before Booking</h4>
+        <p>
+          Gigi Bratakos is an experienced dementia care consultant, RCFE owner, and Registered Behavior Technician — but she is not your doctor, therapist, or licensed medical professional, and nothing shared in a session with her should be taken as medical, legal, or financial advice.
+        </p>
+        <p>
+          Think of Gigi as a knowledgeable friend who has spent 20 years in the field — someone who can help you understand your options, ask better questions, navigate the system, and feel less alone in this journey. Any guidance she shares is meant to support and inform your own conversations with your loved one's physician, care team, attorney, or financial advisor.
+        </p>
+        <p>
+          Information discussed may touch on topics including care transitions, facility selection, hospice, home health services, Medicare, Medi-Cal, and caregiver strategies. This information is general in nature and based on Gigi's personal and professional experience — it is not personalized medical, legal, or financial counsel.
+        </p>
+        <p>
+          By booking a session, you acknowledge that you are solely responsible for any decisions you make based on your conversations with Gigi, and that Gigi Bratakos and Ask Gigi bear no liability for outcomes arising from those decisions.
+        </p>
+        <label class="checkbox-label">
+          <input type="checkbox" id="disclaimerCheck" />
+          <span>I have read and understand this disclaimer. I agree that my sessions with Gigi are for informational and supportive purposes only, and do not constitute medical, legal, or financial advice.</span>
+        </label>
+      </div>
+
+      <button class="submit-btn" onclick="
+        if (!document.getElementById('disclaimerCheck').checked) {
+          alert('Please read and check the disclaimer box before submitting.');
+          return;
+        }
+        alert('Thank you! Gigi will be in touch within 24 hours to confirm your session.');
+      ">Request a Session →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Ask Gigi &nbsp;|&nbsp; Gigi Bratakos</strong> &nbsp;|&nbsp; Alzheimer's &amp; Dementia Consultation &nbsp;|&nbsp; $60/hr</p>
+  <p style="margin-top:8px;">For families and caregivers navigating the road ahead.</p>
+</footer>
+
+</body>
+</html>

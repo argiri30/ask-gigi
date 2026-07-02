@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ask Gigi — Commercial</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #000;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 9:16 vertical canvas for Reels/TikTok */
+  .canvas {
+    width: min(100vw, calc(100vh * 9/16));
+    height: min(100vh, calc(100vw * 16/9));
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Background pulse */
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(107,143,113,0.12) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  /* All scenes */
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px;
+    opacity: 0;
+    text-align: center;
+  }
+
+  /* Text elements */
+  .big {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.8rem, 10vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
+  }
+  .big.in { transform: translateY(0); opacity: 1; }
+
+  .serif {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #6B8F71;
+  }
+
+  .medium {
+    font-size: clamp(1.4rem, 5vw, 2.6rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.1s, opacity 0.55s ease 0.1s;
+  }
+  .medium.in { transform: translateY(0); opacity: 1; }
+
+  .small {
+    font-size: clamp(0.85rem, 2.5vw, 1.15rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.2s, opacity 0.5s ease 0.2s;
+    max-width: 340px;
+  }
+  .small.in { transform: translateY(0); opacity: 1; }
+
+  .eyebrow {
+    font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6B8F71;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.45s ease;
+    margin-bottom: 16px;
+  }
+  .eyebrow.in { transform: translateY(0); opacity: 1; }
+
+  .divider {
+    width: 0;
+    height: 2px;
+    background: #6B8F71;
+    margin: 20px auto;
+    transition: width 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s;
+  }
+  .divider.in { width: 60px; }
+
+  .gap { height: 16px; }
+  .gap-lg { height: 28px; }
+
+  /* LOGO scene */
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 14vw, 7rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.7s ease;
+  }
+  .logo-text.in { transform: scale(1); opacity: 1; }
+
+  .logo-sub {
+    font-size: clamp(0.6rem, 2vw, 0.8rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6B8F71;
+    margin-top: 8px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.4s;
+  }
+  .logo-sub.in { opacity: 1; }
+
+  .tag-pill {
+    display: inline-block;
+    border: 1.5px solid rgba(107,143,113,0.6);
+    border-radius: 100px;
+    padding: 10px 28px;
+    font-size: clamp(0.75rem, 2.2vw, 1rem);
+    font-weight: 600;
+    color: #6B8F71;
+    letter-spacing: 0.05em;
+    margin-top: 24px;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.5s, opacity 0.5s ease 0.5s;
+  }
+  .tag-pill.in { transform: scale(1); opacity: 1; }
+
+  /* Disclosure scene */
+  .disc-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(107,143,113,0.25);
+    border-radius: 14px;
+    padding: 24px 28px;
+    max-width: 360px;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s, opacity 0.6s ease 0.2s;
+  }
+  .disc-box.in { transform: translateY(0); opacity: 1; }
+  .disc-line {
+    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .disc-line strong { color: rgba(255,255,255,0.9); }
+  .disc-line.in { opacity: 1; }
+  .disc-divider {
+    height: 1px;
+    background: rgba(107,143,113,0.2);
+    margin: 10px 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .disc-divider.in { transform: scaleX(1); }
+
+  /* flash overlay */
+  .flash {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.08s;
+    z-index: 10;
+  }
+
+  /* replay btn */
+  .replay {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s, background 0.2s;
+    z-index: 20;
+  }
+  .replay:hover { background: rgba(255,255,255,0.15); }
+  .replay.visible { opacity: 1; }
+
+  /* music btn */
+  .music-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.65rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.2s;
+  }
+  .music-btn:hover { background: rgba(255,255,255,0.15); }
+
+  .progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #6B8F71;
+    width: 0%;
+    transition: width linear;
+    z-index: 20;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="bg-glow" id="glow"></div>
+  <div class="flash" id="flash"></div>
+
+  <!-- SCENE 1: Hook -->
+  <div class="scene" id="s1">
+    <div class="big" id="s1a">Someone<br/>you love</div>
+    <div class="gap"></div>
+    <div class="medium" id="s1b">has Alzheimer's.</div>
+  </div>
+
+  <!-- SCENE 2: The problem -->
+  <div class="scene" id="s2">
+    <div class="big" id="s2a">You have<br/><span class="serif">questions.</span></div>
+    <div class="gap-lg"></div>
+    <div class="small" id="s2b">What do I do?<br/>Who do I call?<br/>Is this normal?</div>
+  </div>
+
+  <!-- SCENE 3: The stat -->
+  <div class="scene" id="s3">
+    <div class="eyebrow" id="s3a">Right now in America</div>
+    <div class="big" id="s3b" style="font-size:clamp(3rem,11vw,6rem)">7.2<br/>million</div>
+    <div class="divider" id="s3div"></div>
+    <div class="small" id="s3c">families are navigating<br/>this — without a guide.</div>
+  </div>
+
+  <!-- SCENE 4: Solution intro -->
+  <div class="scene" id="s4">
+    <div class="medium" id="s4a">Meet Gigi.</div>
+    <div class="gap"></div>
+    <div class="small" id="s4b">20 years.<br/>RCFE owner. RBT.<br/>Personal caregiver.</div>
+  </div>
+
+  <!-- SCENE 5: Credentials flash -->
+  <div class="scene" id="s5">
+    <div class="eyebrow" id="s5a">She's been</div>
+    <div class="big" id="s5b">on every<br/>side of<br/><span class="serif">this.</span></div>
+  </div>
+
+  <!-- SCENE 6: What she does -->
+  <div class="scene" id="s6">
+    <div class="medium" id="s6a">Hospice.<br/>Medicare.<br/>VA benefits.<br/>Memory care.</div>
+  </div>
+
+  <!-- SCENE 7: The offer -->
+  <div class="scene" id="s7">
+    <div class="eyebrow" id="s7a">One hour. Real answers.</div>
+    <div class="big" id="s7b" style="font-size:clamp(3.5rem,12vw,6.5rem)">$60.</div>
+    <div class="gap"></div>
+    <div class="small" id="s7c">No upsells. No packages.<br/>Just someone who gets it.</div>
+  </div>
+
+  <!-- SCENE 8: CTA / Logo -->
+  <div class="scene" id="s8">
+    <div class="logo-text" id="s8logo">Ask Gigi</div>
+    <div class="logo-sub" id="s8sub">askgigi.com &nbsp;·&nbsp; $60/hr</div>
+    <div class="tag-pill" id="s8pill">Book your session today</div>
+  </div>
+
+  <!-- SCENE 9: Disclosure -->
+  <div class="scene" id="s9">
+    <div class="eyebrow" id="s9a">Please Read</div>
+    <div class="disc-box" id="s9box">
+      <p class="disc-line" id="s9l1">📹 All sessions are recorded for quality purposes.<br/>No names or identifying information are required.</p>
+      <div class="disc-divider" id="s9div"></div>
+      <p class="disc-line" id="s9l2">The information shared in sessions with Gigi Bratakos is for <strong>general informational and supportive purposes only</strong> — not medical, legal, or financial advice.</p>
+      <div class="disc-divider" id="s9div2"></div>
+      <p class="disc-line" id="s9l3">Always consult your physician, licensed medical provider, attorney, or financial advisor before making decisions about care, treatment, or benefits.</p>
+      <div class="disc-divider" id="s9div3"></div>
+      <p class="disc-line" id="s9l4">By booking a session, you acknowledge that Gigi Bratakos and Ask Gigi bear no liability for decisions made based on information shared during consultations.</p>
+    </div>
+  </div>
+
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">♪ Music</button>
+  <button class="replay" id="replayBtn" onclick="startAd()">↺ Replay</button>
+  <div class="progress" id="progress"></div>
+</div>
+
+<script>
+const TOTAL = 42000; // 42 seconds with disclosure
+
+const scenes = [
+  { id:'s1', start:0,    dur:3800, els:[['s1a',100],['s1b',600]] },
+  { id:'s2', start:3800, dur:3800, els:[['s2a',100],['s2b',700]] },
+  { id:'s3', start:7600, dur:4200, els:[['s3a',100],['s3b',400],['s3div',800],['s3c',1000]] },
+  { id:'s4', start:11800,dur:3600, els:[['s4a',100],['s4b',600]] },
+  { id:'s5', start:15400,dur:3200, els:[['s5a',100],['s5b',400]] },
+  { id:'s6', start:18600,dur:3600, els:[['s6a',100]] },
+  { id:'s7', start:22200,dur:3800, els:[['s7a',100],['s7b',400],['s7c',900]] },
+  { id:'s8', start:26000,dur:4000, els:[['s8logo',200],['s8sub',800],['s8pill',1200]] },
+  { id:'s9', start:30000,dur:12000, els:[['s9a',100],['s9box',300],['s9l1',700],['s9div',1100],['s9l2',1300],['s9div2',1800],['s9l3',2000],['s9div3',2600],['s9l4',2800]] },
+];
+
+let timers = [];
+let startTime = null;
+let raf = null;
+
+function clearAll() {
+  timers.forEach(clearTimeout);
+  timers = [];
+  if (raf) cancelAnimationFrame(raf);
+  // hide everything
+  document.querySelectorAll('.scene').forEach(s => s.style.opacity = 0);
+  document.querySelectorAll('.big,.medium,.small,.eyebrow,.logo-text,.logo-sub,.tag-pill,.divider').forEach(el => {
+    el.classList.remove('in');
+  });
+  document.getElementById('glow').style.opacity = 0;
+  document.getElementById('flash').style.opacity = 0;
+  document.getElementById('replayBtn').classList.remove('visible');
+  document.getElementById('progress').style.width = '0%';
+  document.getElementById('progress').style.transition = 'none';
+}
+
+function flashScreen() {
+  const f = document.getElementById('flash');
+  f.style.opacity = '0.35';
+  setTimeout(() => f.style.opacity = '0', 120);
+}
+
+function showScene(sceneId, elements) {
+  const sceneEl = document.getElementById(sceneId);
+  sceneEl.style.opacity = '1';
+  elements.forEach(([elId, delay]) => {
+    timers.push(setTimeout(() => {
+      const el = document.getElementById(elId);
+      if (el) el.classList.add('in');
+    }, delay));
+  });
+}
+
+function hideScene(sceneId) {
+  const sceneEl = document.getElementById(sceneId);
+  sceneEl.style.transition = 'opacity 0.35s ease';
+  sceneEl.style.opacity = '0';
+  document.querySelectorAll(`#${sceneId} .big,#${sceneId} .medium,#${sceneId} .small,#${sceneId} .eyebrow,#${sceneId} .divider,#${sceneId} .logo-text,#${sceneId} .logo-sub,#${sceneId} .tag-pill`).forEach(el => {
+    el.classList.remove('in');
+  });
+  setTimeout(() => sceneEl.style.transition = '', 400);
+}
+
+function updateProgress() {
+  const elapsed = Date.now() - startTime;
+  const pct = Math.min(100, (elapsed / TOTAL) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  if (elapsed < TOTAL) {
+    raf = requestAnimationFrame(updateProgress);
+  }
+}
+
+function startAd() {
+  clearAll();
+  startTime = Date.now();
+
+  // progress bar
+  document.getElementById('progress').style.transition = `width ${TOTAL}ms linear`;
+  setTimeout(() => {
+    document.getElementById('progress').style.width = '100%';
+  }, 50);
+
+  // glow on at scene 4
+  timers.push(setTimeout(() => {
+    document.getElementById('glow').style.opacity = '1';
+  }, 11800));
+
+  // schedule scenes
+  scenes.forEach((scene, i) => {
+    timers.push(setTimeout(() => {
+      if (i > 0) flashScreen();
+      showScene(scene.id, scene.els);
+    }, scene.start));
+
+    // hide at end of duration (except last scene)
+    if (i < scenes.length - 1) {
+      timers.push(setTimeout(() => {
+        hideScene(scene.id);
+      }, scene.start + scene.dur - 300));
+    }
+  });
+
+  // show replay at end
+  timers.push(setTimeout(() => {
+    document.getElementById('replayBtn').classList.add('visible');
+  }, TOTAL - 500));
+
+  // progress
+  raf = requestAnimationFrame(updateProgress);
+}
+
+// ── MUSIC ENGINE — Soft Ambient / Healing ─────────────────
+let audioCtx = null;
+let musicNodes = [];
+let musicPlaying = false;
+let masterGain = null;
+
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+  masterGain.connect(audioCtx.destination);
+}
+
+// Build a lush reverb tail
+function makeReverb() {
+  const conv = audioCtx.createConvolver();
+  const sr   = audioCtx.sampleRate;
+  const len  = sr * 4;
+  const buf  = audioCtx.createBuffer(2, len, sr);
+  for (let c = 0; c < 2; c++) {
+    const d = buf.getChannelData(c);
+    for (let i = 0; i < len; i++) {
+      d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 1.6);
+    }
+  }
+  conv.buffer = buf;
+  return conv;
+}
+
+// One smooth breathing tone — fades in and out slowly
+function breatheTone(freq, startT, duration, peakGain, detuneHz = 0) {
+  if (!audioCtx) return;
+
+  const osc  = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const lp   = audioCtx.createBiquadFilter();
+
+  osc.type = 'sine';
+  // Slowly drift the frequency — makes it feel alive, not robotic
+  osc.frequency.setValueAtTime(freq + detuneHz, startT);
+  osc.frequency.linearRampToValueAtTime(freq - detuneHz, startT + duration);
+
+  lp.type = 'lowpass';
+  lp.frequency.value = 500; // very muffled — warm, not harsh
+
+  const fadeIn  = duration * 0.35;
+  const fadeOut = duration * 0.35;
+
+  gain.gain.setValueAtTime(0, startT);
+  gain.gain.linearRampToValueAtTime(peakGain, startT + fadeIn);
+  gain.gain.setValueAtTime(peakGain, startT + duration - fadeOut);
+  gain.gain.linearRampToValueAtTime(0, startT + duration);
+
+  osc.connect(lp);
+  lp.connect(gain);
+  gain.connect(masterGain);
+
+  osc.start(startT);
+  osc.stop(startT + duration);
+  musicNodes.push(osc, gain, lp);
+}
+
+// A gentle shimmer — very quiet high sine, almost imperceptible
+function shimmer(freq, startT, duration) {
+  breatheTone(freq, startT, duration, 0.025, 1.5);
+}
+
+function scheduleMelody() {
+  if (!audioCtx) return;
+  const t = audioCtx.currentTime + 0.5;
+  const D = 42; // total seconds
+
+  // ── Foundation: deep warm bass drone ──
+  // C2 = 65.4 Hz — felt more than heard
+  breatheTone(65.4,  t,      D,      0.09,  0.3);
+  breatheTone(98.0,  t+2,    D-2,    0.05,  0.2);  // G2
+
+  // ── Mid layer: slow-breathing chord tones ──
+  // C3 = 130.8
+  breatheTone(130.8, t,      18,     0.07,  0.5);
+  breatheTone(130.8, t+14,   18,     0.07,  0.4);
+  breatheTone(130.8, t+28,   14,     0.06,  0.3);
+
+  // E3 = 164.8
+  breatheTone(164.8, t+3,    16,     0.055, 0.6);
+  breatheTone(164.8, t+20,   14,     0.05,  0.5);
+  breatheTone(164.8, t+34,   8,      0.04,  0.4);
+
+  // G3 = 196.0
+  breatheTone(196.0, t+5,    14,     0.05,  0.5);
+  breatheTone(196.0, t+22,   12,     0.045, 0.4);
+  breatheTone(196.0, t+36,   6,      0.035, 0.3);
+
+  // ── Upper warmth: slow pads ──
+  // C4 = 261.6
+  breatheTone(261.6, t+6,    14,     0.038, 0.8);
+  breatheTone(261.6, t+24,   12,     0.032, 0.6);
+  breatheTone(261.6, t+36,   6,      0.025, 0.5);
+
+  // E4 = 329.6
+  breatheTone(329.6, t+8,    12,     0.028, 1.0);
+  breatheTone(329.6, t+26,   10,     0.022, 0.8);
+
+  // G4 = 392
+  breatheTone(392.0, t+10,   10,     0.02,  1.2);
+  breatheTone(392.0, t+28,   8,      0.016, 1.0);
+
+  // ── Shimmer: barely-there high tones for air ──
+  shimmer(523.3, t+8,   10);   // C5
+  shimmer(659.3, t+14,  8);    // E5
+  shimmer(523.3, t+24,  8);    // C5 again
+  shimmer(392.0, t+32,  10);   // G4 shimmer close
+
+  // ── Second wave — everything swells slightly after 20s ──
+  breatheTone(130.8, t+20,  10,  0.06, 0.3);
+  breatheTone(261.6, t+22,  10,  0.04, 0.5);
+  breatheTone(196.0, t+24,  8,   0.035, 0.4);
+
+  // ── Closing: fade to just bass drone ──
+  breatheTone(65.4,  t+36,  6,   0.06, 0.2);
+  breatheTone(130.8, t+36,  6,   0.04, 0.3);
+}
+
+function fadeIn() {
+  if (!masterGain) return;
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(0, now);
+  masterGain.gain.linearRampToValueAtTime(1, now + 3.5); // very slow fade in
+}
+
+function fadeOut(cb) {
+  if (!masterGain) return;
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.linearRampToValueAtTime(0, now + 2.0);
+  setTimeout(cb, 2100);
+}
+
+function startMusic() {
+  initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  scheduleMelody();
+  fadeIn();
+  musicPlaying = true;
+  document.getElementById('musicBtn').textContent = '♪ On';
+}
+
+function stopMusic() {
+  if (!audioCtx) return;
+  fadeOut(() => {
+    musicNodes.forEach(n => { try { n.disconnect(); } catch(e){} });
+    musicNodes = [];
+  });
+  musicPlaying = false;
+  document.getElementById('musicBtn').textContent = '♪ Off';
+}
+
+function toggleMusic() {
+  if (musicPlaying) { stopMusic(); }
+  else { startMusic(); }
+}
+
+
+// ── AD ENGINE ─────────────────────────────────────────────
+
+// Restart music on replay
+const _origStartAd = startAd;
+window.startAd = function() {
+  if (musicPlaying) { stopMusic(); setTimeout(() => { startMusic(); }, 200); }
+  _origStartAd();
+};
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    startAd();
+    // slight delay so browser allows audio after interaction
+    document.addEventListener('click', function initSound() {
+      startMusic();
+      document.removeEventListener('click', initSound);
+    }, { once: true });
+    // Also try auto
+    setTimeout(startMusic, 800);
+  }, 600);
+});
+</script>
+</body>
+</html>

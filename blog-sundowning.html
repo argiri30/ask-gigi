@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sundowning: Why It Happens and What Actually Helps | Ask Gigi</title>
+  <meta name="description" content="The agitation, confusion, and restlessness that hits every evening with dementia — why it happens, what makes it worse, and what actually works from 20 years of experience."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#1C2B3A;--sand:#F5EFE4;--cream:#FDFAF5;--sage:#6B8F71;--sage-light:#EAF1EB;--gold:#C8A96E;--text:#2D2D2D;--muted:#6B7280;--white:#FFFFFF}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);line-height:1.7}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(28,43,58,0.08)}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);text-decoration:none}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{font-size:0.82rem;color:var(--muted);text-decoration:none}
+    .nav-cta{background:var(--sage);color:var(--white)!important;padding:10px 22px;border-radius:100px;font-weight:600}
+    .hero{background:linear-gradient(135deg,#1a2535 0%,#2C1810 100%);padding:130px 40px 64px}
+    .hero-inner{max-width:740px;margin:0 auto}
+    .hero-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#F4A460;margin-bottom:16px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);line-height:1.2;margin-bottom:20px}
+    .hero-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);letter-spacing:0.05em}
+    .article{max-width:740px;margin:0 auto;padding:64px 40px}
+    .article h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,1.7rem);color:var(--navy);margin:48px 0 16px;line-height:1.25}
+    .article h3{font-size:1rem;font-weight:700;color:var(--navy);margin:28px 0 10px}
+    .article p{font-size:0.95rem;color:#3A3A3A;line-height:1.85;margin-bottom:18px}
+    .article p strong{color:var(--navy)}
+    .article ul{padding-left:20px;margin-bottom:18px}
+    .article ul li{font-size:0.92rem;color:#3A3A3A;line-height:1.75;margin-bottom:8px}
+    .article ul li strong{color:var(--navy)}
+    .callout{background:var(--sage-light);border-left:4px solid var(--sage);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .callout strong{display:block;color:var(--navy);font-size:0.85rem;margin-bottom:8px}
+    .callout p{font-size:0.85rem;color:#3A3A3A;margin:0;line-height:1.7}
+    .warning{background:#FEF9F0;border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .warning strong{display:block;color:#8a6830;font-size:0.85rem;margin-bottom:8px}
+    .warning p{font-size:0.85rem;color:#3A3A3A;margin:0;line-height:1.7}
+    .trigger-list{background:var(--cream);border-radius:12px;padding:24px 28px;margin:28px 0}
+    .trigger-list h4{font-size:0.85rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em}
+    .trigger-list ul{padding-left:16px;margin:0}
+    .trigger-list li{font-size:0.85rem;color:#3A3A3A;line-height:1.7;margin-bottom:6px}
+    .strategies-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+    .strategy{background:var(--white);border:1px solid rgba(28,43,58,0.08);border-radius:10px;padding:18px}
+    .strategy h4{font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+    .strategy p{font-size:0.78rem;color:var(--muted);line-height:1.6;margin:0}
+    .article-cta{background:var(--navy);border-radius:16px;padding:40px;text-align:center;margin-top:64px}
+    .article-cta h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);margin-bottom:10px}
+    .article-cta p{font-size:0.88rem;color:rgba(255,255,255,0.55);margin-bottom:24px;line-height:1.7}
+    .article-cta a{display:inline-block;background:var(--sage);color:var(--white);padding:13px 32px;border-radius:100px;font-size:0.9rem;font-weight:600;text-decoration:none}
+    .back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--sage);text-decoration:none;margin-bottom:48px;font-weight:600}
+    footer{background:var(--navy);padding:24px;text-align:center;font-size:0.7rem;color:rgba(255,255,255,0.3)}
+    footer a{color:rgba(255,255,255,0.4);text-decoration:none}
+    @media(max-width:768px){nav{padding:14px 20px}.hero{padding:100px 24px 48px}.article{padding:48px 24px}.strategies-grid{grid-template-columns:1fr}.nav-links a:not(.nav-cta){display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="landing.html" class="nav-logo">Ask Gigi</a>
+  <div class="nav-links">
+    <a href="blog.html">← Blog</a>
+    <a href="about.html">About</a>
+    <a href="index.html#booking" class="nav-cta">Book — $60/hr</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🌅 Behavior & Dementia</div>
+    <h1>Sundowning: Why It Happens and What Actually Helps</h1>
+    <div class="hero-meta">By Gigi Bratakos, RBT &nbsp;·&nbsp; 20 Years Dementia Care &nbsp;·&nbsp; RCFE Owner</div>
+  </div>
+</div>
+
+<div class="article">
+  <a href="blog.html" class="back-link">← Back to all posts</a>
+
+  <p>Every evening, like clockwork, something shifts. The person who was calm and manageable during the day becomes agitated, confused, restless, or even aggressive as the sun goes down. They want to go home — even when they're already home. They think it's a different decade. They pace. They can't be redirected. They're distressed in a way that's hard to watch and hard to manage.</p>
+  <p>This is sundowning. And it is one of the most exhausting, disorienting experiences in dementia caregiving — for everyone involved.</p>
+  <p>After 20 years in this field, including caring for my own grandmother, here's what I know about why it happens and what genuinely helps.</p>
+
+  <h2>What Is Sundowning?</h2>
+  <p>Sundowning — formally called "late-day confusion" — is a cluster of symptoms that tend to worsen in the late afternoon and evening hours in people with Alzheimer's and dementia. It's not a separate disease. It's a predictable pattern of behavioral change tied to the time of day.</p>
+  <p>Symptoms vary widely but commonly include:</p>
+  <ul>
+    <li>Increased agitation, anxiety, or irritability</li>
+    <li>Confusion about time, place, or identity</li>
+    <li>Pacing, restlessness, or inability to settle</li>
+    <li>"I want to go home" — even when they are home</li>
+    <li>Seeing or hearing things that aren't there (hallucinations)</li>
+    <li>Suspicion, paranoia, or accusations</li>
+    <li>Becoming demanding, clingy, or upset</li>
+    <li>Difficulty sleeping and nighttime wandering</li>
+  </ul>
+
+  <h2>Why Does It Happen?</h2>
+  <p>Researchers don't have a complete explanation, but several factors contribute:</p>
+
+  <h3>The internal clock is damaged</h3>
+  <p>Dementia disrupts the brain's circadian rhythm — the internal 24-hour clock that regulates sleep, wakefulness, and hormone production. When this clock is damaged, the brain loses its ability to properly signal the transition from day to evening, creating confusion and agitation.</p>
+
+  <h3>Fatigue accumulates throughout the day</h3>
+  <p>People with dementia work incredibly hard all day to compensate for cognitive deficits — to follow conversations, navigate their environment, manage anxiety. By late afternoon, that effort has accumulated and their coping capacity is depleted. What felt manageable at 10am feels overwhelming at 5pm.</p>
+
+  <h3>Light changes trigger confusion</h3>
+  <p>As natural light fades and shadows increase, the visual environment becomes harder for a person with dementia to interpret. Shadows can look like people. Familiar rooms can look strange. This visual confusion amplifies the anxiety they're already feeling.</p>
+
+  <h3>Hunger and physical discomfort</h3>
+  <p>If dinner is late or they haven't eaten enough, blood sugar drops — and with it, mood and cognition. Unaddressed pain, a full bladder, or physical discomfort they can't articulate often show up as agitation in the evening.</p>
+
+  <div class="callout">
+    <strong>The important thing to understand:</strong>
+    <p>Sundowning is not a choice. It is not manipulation. It is not "acting out." It is a neurological event — the brain under duress doing what it can. Responding with frustration makes it worse. Responding with calm, structure, and redirection makes it better.</p>
+  </div>
+
+  <h2>What Makes It Worse — Common Triggers</h2>
+  <div class="trigger-list">
+    <h4>Known sundowning triggers to watch for:</h4>
+    <ul>
+      <li>Overstimulation during the day (too many visitors, activities, noise)</li>
+      <li>Under-stimulation or boredom (nothing to engage them during the day)</li>
+      <li>Disrupted sleep schedule or too much daytime napping</li>
+      <li>Hunger or thirst — even mild dehydration worsens confusion</li>
+      <li>Pain or physical discomfort (UTI is a major one — often missed)</li>
+      <li>Changes in environment, routine, or caregivers</li>
+      <li>Low light and shadows in the late afternoon</li>
+      <li>Caregiver stress — they pick up on your anxiety</li>
+      <li>Too much caffeine, especially in the afternoon</li>
+      <li>Medications that affect mood or cognition — review with their doctor</li>
+    </ul>
+  </div>
+
+  <h2>What Actually Helps</h2>
+  <p>There is no single solution that works for everyone. But here are the strategies I've seen make the biggest difference:</p>
+
+  <div class="strategies-grid">
+    <div class="strategy">
+      <h4>🌞 Increase light exposure in the morning</h4>
+      <p>Bright natural light in the morning helps reset the circadian rhythm. Open blinds, sit by a window, or take a short morning walk when weather allows.</p>
+    </div>
+    <div class="strategy">
+      <h4>🕐 Keep a strict daily routine</h4>
+      <p>Consistent meal times, activity times, and bedtime reduce the brain's uncertainty about what comes next — which reduces anxiety throughout the day.</p>
+    </div>
+    <div class="strategy">
+      <h4>🍽️ Move the largest meal to midday</h4>
+      <p>A lighter dinner and a more substantial lunch can stabilize blood sugar and energy levels through the vulnerable late afternoon window.</p>
+    </div>
+    <div class="strategy">
+      <h4>💡 Increase indoor lighting at dusk</h4>
+      <p>Before natural light fades, turn on indoor lights — especially in the areas where they spend time. Eliminate shadows that can cause visual confusion.</p>
+    </div>
+    <div class="strategy">
+      <h4>🎵 Use calming music</h4>
+      <p>Music from their era — played softly in the late afternoon — can be remarkably calming. Avoid TV news or anything loud or stimulating.</p>
+    </div>
+    <div class="strategy">
+      <h4>🚶 Build in afternoon activity</h4>
+      <p>A gentle walk or mild activity in the early afternoon can reduce restlessness later. Avoid overstimulating activities close to the sundowning window.</p>
+    </div>
+    <div class="strategy">
+      <h4>✋ Stay calm — your energy matters</h4>
+      <p>People with dementia are highly sensitive to emotional tone. If you're stressed or frustrated, they feel it and escalate. Slow down, soften your voice, breathe.</p>
+    </div>
+    <div class="strategy">
+      <h4>🧩 Redirect, don't confront</h4>
+      <p>When they say "I want to go home," don't argue. Try: "Tell me about home — what do you miss about it?" Redirect to memory and feeling, not logic.</p>
+    </div>
+  </div>
+
+  <h2>When to Talk to the Doctor</h2>
+  <p>While sundowning is common, a sudden or significant worsening should prompt a medical evaluation. Specific things to check:</p>
+  <ul>
+    <li><strong>Urinary tract infection (UTI):</strong> In elderly people with dementia, a UTI can cause a sudden dramatic worsening of confusion and agitation. It's one of the first things to rule out.</li>
+    <li><strong>Medication review:</strong> Some medications worsen sundowning. Ask the doctor to review everything they're taking.</li>
+    <li><strong>Pain:</strong> Unmanaged pain they can't communicate is a common hidden driver of behavioral symptoms.</li>
+    <li><strong>Sleep disorder:</strong> If nighttime restlessness is severe, a sleep study or medication evaluation may help.</li>
+  </ul>
+
+  <div class="warning">
+    <strong>💊 A note on medication:</strong>
+    <p>Sleep aids and antipsychotics are sometimes used for severe sundowning — but they carry significant risks in elderly patients with dementia, including increased fall risk and even increased mortality. These should be a last resort, used at the lowest effective dose, and reviewed regularly. Non-medication approaches should always be tried first and documented.</p>
+  </div>
+
+  <h2>For the Caregiver: You Need Support Too</h2>
+  <p>Managing sundowning every single evening — often alone — is genuinely exhausting. It disrupts your own sleep, your own evenings, your own sense of normalcy. Please don't try to do this indefinitely without support:</p>
+  <ul>
+    <li>Ask about Adult Day Programs so your family member is active and engaged during the day — which reduces sundowning in the evening</li>
+    <li>Consider evening respite help even one or two nights a week</li>
+    <li>Join a caregiver support group — others who've been through this are invaluable</li>
+    <li>Talk to someone — a counselor, a friend, or a consultant like Gigi — who can help you troubleshoot what's specific to your situation</li>
+  </ul>
+
+  <p>Sundowning is hard. But it's manageable — with the right strategies, the right expectations, and the right support.</p>
+
+  <div class="article-cta">
+    <h3>Is sundowning overwhelming your evenings?</h3>
+    <p>Every person and every situation is different. What works for one family may not work for another. Book a session and let's figure out what's driving the sundowning in your specific situation — and what to try next.</p>
+    <a href="index.html#booking">Book a Session — $60/hr</a>
+  </div>
+</div>
+
+<footer>
+  <p><strong style="color:rgba(255,255,255,0.6)">Ask Gigi · Gigi Bratakos</strong> &nbsp;|&nbsp; <a href="landing.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="index.html#booking">Book a Session</a></p>
+  <p style="margin-top:6px;">For informational purposes only · Not medical, legal, or financial advice</p>
+</footer>
+</body>
+</html>

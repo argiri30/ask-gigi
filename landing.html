@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ask Gigi | Alzheimer's & Dementia Expert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:#1C2B3A; --sand:#F5EFE4; --cream:#FDFAF5;
+      --sage:#6B8F71; --sage-light:#EAF1EB; --gold:#C8A96E;
+      --text:#2D2D2D; --muted:#6B7280; --white:#FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--white); color:var(--navy); }
+
+    /* HERO */
+    .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; padding-top:56px; }
+    .hero-left { display:flex; flex-direction:column; justify-content:center; padding:80px 56px; background:var(--white); position:relative; z-index:2; }
+    .hero-left::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 0% 60%,rgba(107,143,113,0.07) 0%,transparent 70%); pointer-events:none; }
+    .hero-right { position:relative; overflow:hidden; }
+    .hero-right img { width:100%; height:100%; object-fit:cover; object-position:center top; filter:brightness(0.72) saturate(0.85); }
+    .hero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--white) 0%,transparent 35%),linear-gradient(to top,rgba(255,255,255,0.2) 0%,transparent 50%); }
+
+    .ask-gigi-btn { display:inline-block; font-family:'Playfair Display',serif; font-size:clamp(3.2rem,6.5vw,6rem); font-weight:700; letter-spacing:-0.02em; line-height:1; color:var(--navy); text-decoration:none; border:2.5px solid rgba(107,143,113,0.5); border-radius:20px; padding:24px 40px; margin-bottom:32px; position:relative; z-index:1; transition:border-color 0.3s,box-shadow 0.3s,transform 0.2s; box-shadow:0 0 32px rgba(107,143,113,0.08); align-self:flex-start; }
+    .ask-gigi-btn:hover { border-color:var(--sage); box-shadow:0 0 64px rgba(107,143,113,0.28); transform:translateY(-2px); }
+    .ask-gigi-sub { display:block; font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--sage); margin-top:12px; }
+    .hero-tagline { font-family:'Playfair Display',serif; font-size:clamp(1rem,1.8vw,1.25rem); font-style:italic; color:var(--muted); margin-bottom:10px; position:relative; z-index:1; }
+    .hero-byline { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(28,43,58,0.35); margin-bottom:36px; position:relative; z-index:1; }
+    .hero-cta { display:inline-block; background:var(--sage); color:var(--white); font-size:0.88rem; font-weight:600; padding:13px 30px; border-radius:100px; text-decoration:none; transition:background 0.2s,transform 0.15s; position:relative; z-index:1; align-self:flex-start; }
+    .hero-cta:hover { background:#557a5b; transform:translateY(-1px); }
+
+    /* STAT STRIP */
+    .stat-strip { background:var(--sage); padding:18px 40px; display:flex; gap:40px; justify-content:center; flex-wrap:wrap; }
+    .stat { text-align:center; color:var(--white); }
+    .stat strong { display:block; font-family:'Playfair Display',serif; font-size:1.5rem; line-height:1; }
+    .stat span { font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.75; margin-top:4px; display:block; }
+
+    /* TOPICS */
+    .topics { background:var(--white); padding:80px 40px; }
+    .topics-inner { max-width:1000px; margin:0 auto; }
+    .eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--sage); margin-bottom:10px; }
+    .sec-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3vw,2.1rem); color:var(--navy); margin-bottom:6px; }
+    .sec-sub { font-size:0.85rem; color:var(--muted); margin-bottom:44px; max-width:480px; line-height:1.65; }
+
+    /* Featured photo cards */
+    .featured-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+    .feat-card { position:relative; border-radius:16px; overflow:hidden; height:300px; text-decoration:none; display:block; }
+    .feat-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.45s; }
+    .feat-card:hover img { transform:scale(1.05); }
+    .feat-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(15,25,36,0.95) 0%,rgba(15,25,36,0.15) 60%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:26px; }
+    .feat-icon { font-size:1.4rem; margin-bottom:8px; }
+    .feat-card h3 { font-size:1.05rem; font-weight:700; color:var(--white); margin-bottom:6px; line-height:1.25; }
+    .feat-card p { font-size:0.78rem; color:rgba(255,255,255,0.62); line-height:1.55; margin-bottom:12px; }
+    .feat-link { font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); }
+    .feat-card--vet .feat-link { color:var(--gold); }
+
+    /* Small grid */
+    .small-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+    .sm-card { background:var(--white); border:1px solid rgba(28,43,58,0.07); border-radius:12px; padding:20px 16px; text-decoration:none; color:var(--text); transition:box-shadow 0.2s,transform 0.15s; position:relative; overflow:hidden; }
+    .sm-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--sage); transform:scaleX(0); transform-origin:left; transition:transform 0.25s; }
+    .sm-card:hover { box-shadow:0 6px 22px rgba(28,43,58,0.09); transform:translateY(-2px); }
+    .sm-card:hover::after { transform:scaleX(1); }
+    .sm-icon { font-size:1.25rem; margin-bottom:9px; }
+    .sm-card h3 { font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:5px; line-height:1.35; }
+    .sm-card p { font-size:0.73rem; color:var(--muted); line-height:1.55; }
+    .sm-link { margin-top:11px; font-size:0.68rem; font-weight:700; color:var(--sage); letter-spacing:0.05em; }
+
+    /* ABOUT SPLIT */
+    .about-split { display:grid; grid-template-columns:1fr 1fr; min-height:460px; }
+    .about-img { position:relative; overflow:hidden; }
+    .about-img img { width:100%; height:100%; object-fit:cover; object-position:center top; filter:brightness(0.82) saturate(0.9); }
+    .about-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,transparent 55%,var(--sand) 100%); }
+    .about-content { background:var(--sand); padding:60px 48px; display:flex; flex-direction:column; justify-content:center; }
+    .about-content h2 { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,2.5vw,1.9rem); color:var(--navy); margin-bottom:16px; line-height:1.25; }
+    .about-content h2 em { font-style:italic; color:var(--sage); }
+    .about-content p { font-size:0.86rem; color:#4A4A4A; line-height:1.8; margin-bottom:13px; }
+    .about-btn { display:inline-block; margin-top:8px; background:var(--navy); color:var(--white); font-size:0.8rem; font-weight:600; padding:11px 26px; border-radius:100px; text-decoration:none; transition:background 0.2s; align-self:flex-start; }
+    .about-btn:hover { background:#2d3f52; }
+
+    /* BOOKING */
+    .booking { background:var(--sage-light); padding:80px 40px; text-align:center; position:relative; overflow:hidden; }
+    .booking h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.5rem); color:var(--navy); margin-bottom:12px; position:relative; z-index:1; }
+    .booking p { font-size:0.88rem; color:var(--muted); max-width:400px; margin:0 auto 28px; line-height:1.75; position:relative; z-index:1; }
+    .rate-pill { display:inline-block; font-family:'Playfair Display',serif; font-size:2rem; color:var(--navy); border:1.5px solid rgba(107,143,113,0.5); padding:8px 36px; border-radius:100px; margin-bottom:28px; position:relative; z-index:1; }
+    .book-btn { display:inline-block; background:var(--sage); color:var(--white); font-size:1rem; font-weight:600; padding:15px 40px; border-radius:100px; text-decoration:none; transition:background 0.2s,transform 0.15s; position:relative; z-index:1; }
+    .book-btn:hover { background:#557a5b; transform:translateY(-1px); }
+
+    /* RECOGNITION */
+    .recognition { background:var(--cream); border-top:1px solid rgba(28,43,58,0.07); padding:18px 24px; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:7px 14px; }
+    .rec-item { font-size:0.65rem; color:var(--muted); font-weight:500; letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
+    .rec-dot { color:rgba(28,43,58,0.2); }
+
+    /* FOOTER */
+    footer { background:var(--navy); border-top:1px solid rgba(255,255,255,0.05); padding:22px; text-align:center; font-size:0.7rem; color:rgba(255,255,255,0.26); }
+    footer a { color:rgba(255,255,255,0.38); text-decoration:none; }
+    footer a:hover { color:var(--white); }
+
+    @media (max-width:768px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-right { height:260px; order:-1; }
+      .hero-right::after { background:linear-gradient(to top,var(--white) 10%,transparent 60%); }
+      .hero-left { padding:40px 24px; }
+      .feat-card { height:240px; }
+      .featured-row { grid-template-columns:1fr; }
+      .small-grid { grid-template-columns:1fr 1fr; }
+      .about-split { grid-template-columns:1fr; }
+      .about-img { height:240px; }
+      .about-img::after { background:linear-gradient(to top,var(--sand) 0%,transparent 50%); }
+      .about-content { padding:36px 24px; }
+      .topics { padding:56px 24px; }
+      .booking { padding:56px 24px; }
+      .stat-strip { gap:20px; }
+    }
+    @media (max-width:480px) {
+      .small-grid { grid-template-columns:1fr; }
+    }
+    /* NAV */
+    .topnav { position:fixed; top:0; width:100%; z-index:100; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); padding:14px 40px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(28,43,58,0.08); }
+    .topnav-logo { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--navy); text-decoration:none; }
+    .topnav-links { display:flex; align-items:center; gap:28px; }
+    .topnav-links a { font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .topnav-links a:hover { color:var(--navy); }
+    .topnav-cta { background:var(--sage); color:var(--white) !important; padding:10px 22px; border-radius:100px; font-size:0.82rem !important; font-weight:600; transition:background 0.2s !important; }
+    .topnav-cta:hover { background:#557a5b !important; }
+
+    @media (max-width:480px) { .topnav { padding:12px 20px; } .topnav-links a:not(.topnav-cta) { display:none; } }
+
+    @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a href="landing.html" class="topnav-logo">Ask Gigi</a>
+  <div class="topnav-links">
+    <a href="about.html">About Gigi</a>
+    <a href="index.html#topics">Topics</a>
+    <a href="index.html#booking" class="topnav-cta">Book a Session — $60/hr</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <a href="index.html#booking" class="ask-gigi-btn">
+      Ask Gigi
+      <span class="ask-gigi-sub">Tap to book a session</span>
+    </a>
+    <p class="hero-tagline">"You don't have to figure this out alone."</p>
+    <p class="hero-byline">Gigi Bratakos, RBT &nbsp;·&nbsp; Alzheimer's &amp; Dementia Consultant &nbsp;·&nbsp; 20 Years</p>
+    <a href="#topics" class="hero-cta">Explore What Gigi Can Help With ↓</a>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=900&q=80" alt="Compassionate caregiver with elderly patient"/>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-strip">
+  <div class="stat"><strong>20</strong><span>Years in the field</span></div>
+  <div class="stat"><strong>RCFE</strong><span>Licensed owner</span></div>
+  <div class="stat"><strong>10 yrs</strong><span>Personal caregiver</span></div>
+  <div class="stat"><strong>RBT</strong><span>Behavior technician</span></div>
+  <div class="stat"><strong>$60</strong><span>Per hour</span></div>
+</div>
+
+<!-- TOPICS -->
+<section class="topics" id="topics">
+  <div class="topics-inner">
+    <div class="eyebrow">What Gigi Covers</div>
+    <h2 class="sec-title">Pick a topic. Get real answers.</h2>
+    <p class="sec-sub">Tap any card to learn more — then book a session to go deeper with Gigi directly.</p>
+
+    <div class="featured-row">
+      <a href="index.html#guidance" class="feat-card">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" alt="Family caregiver conversation"/>
+        <div class="feat-overlay">
+          <div class="feat-icon">🏠</div>
+          <h3>When It's Time to Move</h3>
+          <p>What to say, how to be assertive yet loving, and how to transition a loved one with their dignity fully intact.</p>
+          <div class="feat-link">Read more →</div>
+        </div>
+      </a>
+      <a href="index.html#veterans" class="feat-card feat-card--vet">
+        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80" alt="Elderly veteran care"/>
+        <div class="feat-overlay">
+          <div class="feat-icon">🇺🇸</div>
+          <h3>Veterans & VA Benefits</h3>
+          <p>Aid &amp; Attendance, VA health care, and benefits most veteran families never hear about. Up to $2,881/mo available.</p>
+          <div class="feat-link">Read more →</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="small-grid">
+      <a href="index.html#staying-home" class="sm-card">
+        <div class="sm-icon">❤️</div>
+        <h3>It's OK to Stay Home</h3>
+        <p>Staying home is valid — but it takes real planning, support, and knowing when things change.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#resources" class="sm-card">
+        <div class="sm-icon">🕊️</div>
+        <h3>Hospice & Home Health</h3>
+        <p>Most families call hospice too late. Learn when to ask and what's covered.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#resources" class="sm-card">
+        <div class="sm-icon">📋</div>
+        <h3>Medicare & Medi-Cal</h3>
+        <p>What's covered, what's not, and what blindsides most families every time.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#resources" class="sm-card">
+        <div class="sm-icon">🏥</div>
+        <h3>Assisted Living vs. Nursing Home</h3>
+        <p>Do you ever actually have to move? The honest answer from someone who knows.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#topics" class="sm-card">
+        <div class="sm-icon">🧠</div>
+        <h3>Understanding the Diagnosis</h3>
+        <p>What stages mean, what to expect, how to interpret what doctors say.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#topics" class="sm-card">
+        <div class="sm-icon">💬</div>
+        <h3>Behavior & Communication</h3>
+        <p>Sundowning, wandering, aggression. How to respond — and what's driving it.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#topics" class="sm-card">
+        <div class="sm-icon">👨‍👩‍👧</div>
+        <h3>Family Dynamics & Burnout</h3>
+        <p>Sibling conflict, guilt, exhaustion. You can't pour from an empty cup.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+      <a href="index.html#topics" class="sm-card">
+        <div class="sm-icon">💡</div>
+        <h3>Choosing a Facility</h3>
+        <p>Questions to ask, red flags to spot, and what good memory care really looks like.</p>
+        <div class="sm-link">Read more →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-split">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" alt="Professional woman consultant"/>
+  </div>
+  <div class="about-content">
+    <div class="eyebrow">About Gigi</div>
+    <h2>Not just experience.<br/><em>Every kind of experience.</em></h2>
+    <p>RCFE owner. Registered Behavior Technician. UC San Diego psychology graduate. Personal caregiver to her grandmother for 10 years. Health Tech Advisor affiliated with Caltech, ArtCenter &amp; JPL.</p>
+    <p>Gigi has been in care facilities, boardrooms, laboratories, and her own home — all in service of helping families navigate Alzheimer's with clarity and confidence.</p>
+    <a href="about.html" class="about-btn">Read Gigi's Full Story →</a>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking">
+  <h2>Ready to talk to Gigi?</h2>
+  <p>No upsells. No packages. Just honest guidance from someone who has been on every side of this journey.</p>
+  <div class="rate-pill">$60 / hour</div><br/><br/>
+  <a href="index.html#booking" class="book-btn">Book a Session →</a>
+</section>
+
+<!-- RECOGNITION -->
+<div class="recognition">
+  <span class="rec-item">Health Tech Advisor</span><span class="rec-dot">·</span>
+  <span class="rec-item">Caltech · ArtCenter · JPL</span><span class="rec-dot">·</span>
+  <span class="rec-item">LA Business Journal</span><span class="rec-dot">·</span>
+  <span class="rec-item">USC Speaker</span><span class="rec-dot">·</span>
+  <span class="rec-item">CES — 5 Years</span><span class="rec-dot">·</span>
+  <span class="rec-item">Fortune 500 Consultant</span><span class="rec-dot">·</span>
+  <span class="rec-item">Award-Winning Startup Advisor</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:rgba(255,255,255,0.55)">Ask Gigi · Gigi Bratakos</strong> &nbsp;|&nbsp;
+  <a href="index.html">Full Site</a> &nbsp;|&nbsp;
+  <a href="about.html">About</a> &nbsp;|&nbsp;
+  <a href="index.html#booking">Book a Session</a></p>
+  <p style="margin-top:5px;">Alzheimer's &amp; Dementia Consultation · $60/hr · For informational purposes only, not medical advice.</p>
+</footer>
+
+</body>
+</html>
